@@ -17,6 +17,10 @@
 (setq-default line-spacing 0) ;;行間設定
 (setq-default tab-width 2 indent-tabs-mode nil) ;;; インデント時にタブを使わないでスペースを使う
 
+;
+; あらゆるmajor modeを使えるようにする
+;
+(require 'generic-x)
 
 ;
 ; el-get 設定
