@@ -22,6 +22,11 @@
 ;
 (require 'generic-x)
 
+;;; 行番号を表示する
+(require 'linum)
+(global-linum-mode t)
+(setq linum-format "%5d")
+
 ;
 ; el-get 設定
 ;
