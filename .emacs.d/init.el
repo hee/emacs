@@ -80,7 +80,7 @@
 ;;;
 (setq howm-menu-lang 'ja)
 ;; howmメモの保存場所
-(setq howm-directory "/Users/kasagi/share/howm")
+(setq howm-directory "~/share/howm")
 ;; howm-mode
 (when (require 'howm nil t)
   ;; C-c,,でhowm-menuを起動
