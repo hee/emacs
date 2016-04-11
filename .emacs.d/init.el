@@ -10,12 +10,15 @@
 (setq line-number-mode t) ;;カーソル行番号表示
 (setq inhibit-startup-message t) ;;スタートアップメッセージ非表示
 (setq make-backup-files nil) ;;バックアップファイルを作らない
-(setq frame-title-format "%b") ;;タイトルにファイル名表示
+(add-to-list 'backup-directory-alist (cons "." "~/share/emacs_backups/")) ;;バックアップファイル save dir
+(setq frame-title-format "%f") ;;タイトルバーにフルパス表示
 (auto-compression-mode t) ;;日本語info文字化け防止
 (global-hl-line-mode) ;;行ハイライト
 (show-paren-mode 1) ;;対応括弧ハイライト
 (setq-default line-spacing 0) ;;行間設定
 (setq-default tab-width 2 indent-tabs-mode nil) ;;; インデント時にタブを使わないでスペースを使う
+(column-number-mode 1) ;;モードラインにカーソルがある位置の文字数を表示
+
 
 ;
 ; あらゆるmajor modeを使えるようにする
