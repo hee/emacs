@@ -73,7 +73,8 @@
 ; projectile-rails
 (el-get-bundle projectile-rails)
 
-
+; evil(mercurialのhgコマンドが必要)
+(el-get-bundle evil)
 
 ;;;
 ;;; howm 設定
