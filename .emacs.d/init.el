@@ -11,6 +11,9 @@
 (setq inhibit-startup-message t) ;;スタートアップメッセージ非表示
 (setq make-backup-files nil) ;;バックアップファイルを作らない
 (add-to-list 'backup-directory-alist (cons "." "~/share/emacs_backups/")) ;;バックアップファイル save dir
+;; auto save設定
+(setq auto-save-file-name-transforms
+      `((".*" ,(expand-file-name "~/share/emacs_backups/") t)))
 (setq frame-title-format "%f") ;;タイトルバーにフルパス表示
 (auto-compression-mode t) ;;日本語info文字化け防止
 (global-hl-line-mode) ;;行ハイライト
