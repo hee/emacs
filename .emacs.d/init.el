@@ -82,6 +82,17 @@
 ; evil(mercurialのhgコマンドが必要)
 (el-get-bundle evil)
 
+;; rails development
+; projectile
+(el-get-bundle projectile)
+(projectile-global-mode)
+; projectile-rails
+(el-get-bundle projectile-rails)
+(add-hook 'projectile-mode-hook 'projectile-rails-on)
+; Rhtml-mode
+(el-get-bundle rhtml-mode)
+
+
 ;;;
 ;;; howm 設定
 ;;;
