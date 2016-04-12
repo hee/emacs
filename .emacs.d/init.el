@@ -73,6 +73,11 @@
 ; markdown-mode
 (el-get-bundle markdown-mode)
 
+; helm
+(el-get-bundle helm)
+; helm-ag
+(el-get-bundle syohex/emacs-helm-ag)
+
 ; php-mode
 (el-get-bundle php-mode)
 
