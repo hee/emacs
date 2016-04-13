@@ -75,8 +75,18 @@
 
 ; helm
 (el-get-bundle helm)
+
 ; helm-ag
 (el-get-bundle syohex/emacs-helm-ag)
+(setq helm-ag-base-command "ag --nocolor --nogrou")
+(global-set-key (kbd "C-c s") 'helm-ag)
+
+; helm-c-yasnippet
+(el-get-bundle emacs-jp/helm-c-yasnippet)
+(setq helm-yas-space-match-any-greedy t)
+(global-set-key (kbd "C-c y") 'helm-yas-complete)
+(yas-global-mode 1)
+(yas-load-directory "snippets")
 
 ; php-mode
 (el-get-bundle php-mode)
