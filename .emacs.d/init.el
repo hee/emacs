@@ -82,11 +82,11 @@
 (global-set-key (kbd "C-c s") 'helm-ag)
 
 ; helm-c-yasnippet
-(el-get-bundle emacs-jp/helm-c-yasnippet)
+(el-get-bundle helm-c-yasnippet)
 (setq helm-yas-space-match-any-greedy t)
 (global-set-key (kbd "C-c y") 'helm-yas-complete)
 (yas-global-mode 1)
-(yas-load-directory "snippets")
+(yas-load-directory "~/.emacs.d/snippets")
 
 ; php-mode
 (el-get-bundle php-mode)
