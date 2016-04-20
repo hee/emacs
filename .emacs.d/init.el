@@ -75,6 +75,7 @@
 
 ; helm
 (el-get-bundle helm)
+(helm-mode 1)
 
 ; helm-ag
 (el-get-bundle syohex/emacs-helm-ag)
