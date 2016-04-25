@@ -105,6 +105,9 @@
 ; Rhtml-mode
 (el-get-bundle rhtml-mode)
 
+; flycheck
+(el-get-bundle melpa:flycheck)
+(add-hook 'after-init-hook 'global-flycheck-mode)
 
 ;;;
 ;;; howm 設定
