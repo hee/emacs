@@ -21,6 +21,8 @@
 (setq-default line-spacing 0) ;;行間設定
 (setq-default tab-width 2 indent-tabs-mode nil) ;;; インデント時にタブを使わないでスペースを使う
 (column-number-mode 1) ;;モードラインにカーソルがある位置の文字数を表示
+(global-whitespace-mode 1)
+(setq-default whitespace-style '(face tabs tab-mark)) ;; タブを可視化
 
 
 ;
