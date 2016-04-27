@@ -107,8 +107,8 @@
 ; Rhtml-mode
 (el-get-bundle rhtml-mode)
 
-; flycheck
-(el-get-bundle melpa:flycheck)
+; flycheck ※el-getで入らないので、M-x pakage-install [Enter] flycheckなどで入れる
+;(el-get-bundle melpa:flycheck)
 (add-hook 'after-init-hook 'global-flycheck-mode)
 
 ;;;
