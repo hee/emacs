@@ -111,6 +111,13 @@
 ;(el-get-bundle melpa:flycheck)
 (add-hook 'after-init-hook 'global-flycheck-mode)
 
+; swift-mode
+; el-getで入らないので、M-x package-install [Enter] swift-modeなどで入れる
+;(el-get-bundle melpa:swift-mode)
+
+; emacs-jscs
+;(el-get-bundle melpa:jscs)
+
 ;;;
 ;;; howm 設定
 ;;;
@@ -139,9 +146,33 @@
 ;;;
 ;;; php-mode
 ;;;
+(add-hook 'php-mode-hook 'flycheck-mode)
 (add-to-list 'auto-mode-alist '("\\.tpl\\'" . php-mode))
 (setq php-search-url "http://jp.php.net/ja/")
 (setq php-manual-url "http://jp.php.net/manual/ja/")
+
+;;;
+;;; swift-mode flycheck用の設定
+;;;
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'swift-mode-hook
+  '(lambda()
+     (add-to-list 'flycheck-checkers 'swift)
+     (setq flycheck-swift-sdk-path
+       (replace-regexp-in-string
+        "\n+$" "" (shell-command-to-string
+                   "xcrun --show-sdk-path --sdk macosx")))
+  )
+)
+
+;;; 
+;;; Flycheck eslint
+;;;
+(eval-after-load 'flycheck
+  '(custom-set-variables
+    '(flycheck-disabled-checkers '(javascript-jshint javascript-jscs))
+  )
+)
 
 
 ;;;
