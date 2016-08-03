@@ -232,6 +232,6 @@
 (defun php-cs-fixer ()
   (interactive)
   (setq filename (buffer-file-name (current-buffer)))
-  (call-process "php-cs-fixer" nil nil nil "fix" filename)
+  (call-process "php-cs-fixer" nil nil nil "fix" filename "--fixers=-concat_without_spaces,-phpdoc_short_description,-pre_increment")
   (revert-buffer t t)
 )
