@@ -172,3 +172,35 @@
  nil 'japanese-jisx0208
  (font-spec :family "Ricty"))
 ))
+
+;;
+;; pathを通す
+;;
+(dolist (dir (list
+              "/sbin"
+              "/usr/sbin"
+              "/bin"
+              "/usr/bin"
+              "/opt/local/bin"
+              "/sw/bin"
+              "/usr/local/bin"
+              "/usr/bin"
+              (expand-file-name "~/bin")
+              (expand-file-name "~/.emacs.d/bin")
+              (expand-file-name "~/.composer/vendor/bin")
+              ))
+ (when (and (file-exists-p dir) (not (member dir exec-path)))
+   (setenv "PATH" (concat dir ":" (getenv "PATH")))
+   (setq exec-path (append (list dir) exec-path))))
+
+
+;;
+;; php-cs-fixerコマンドを叩ける用に設定
+;; 参考：https://gist.github.com/shouhei/9005edbfa66470a3a592
+;;
+(defun php-cs-fixer ()
+  (interactive)
+  (setq filename (buffer-file-name (current-buffer)))
+  (call-process "php-cs-fixer" nil nil nil "fix" filename)
+  (revert-buffer t t)
+)
