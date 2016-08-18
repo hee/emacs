@@ -94,6 +94,9 @@
 ; php-mode
 (el-get-bundle php-mode)
 
+; web-mode
+(el-get-bundle web-mode)
+
 ; evil(mercurialのhgコマンドが必要)
 (el-get-bundle evil)
 
@@ -150,6 +153,21 @@
 (add-to-list 'auto-mode-alist '("\\.tpl\\'" . php-mode))
 (setq php-search-url "http://jp.php.net/ja/")
 (setq php-manual-url "http://jp.php.net/manual/ja/")
+
+;;;
+;;; web-mode
+;;;
+(defun web-mode-hook ()
+  "Hooks for Web mode."
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-engines-alist
+        '(("php"    . "\\.ctp\\'"))
+        )
+  )
+(add-hook 'web-mode-hook 'web-mode-hook)
+  
 
 ;;;
 ;;; swift-mode flycheck用の設定
