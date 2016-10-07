@@ -121,6 +121,9 @@
 ; emacs-jscs
 ;(el-get-bundle melpa:jscs)
 
+(el-get-bundle codic)
+
+
 ;;;
 ;;; howm 設定
 ;;;
