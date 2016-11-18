@@ -123,6 +123,9 @@
 
 (el-get-bundle codic)
 
+; go-mode
+(el-get-bundle go-mode)
+
 
 ;;;
 ;;; howm 設定
