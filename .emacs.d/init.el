@@ -266,3 +266,9 @@
   (call-process "php-cs-fixer" nil nil nil "fix" filename "--fixers=-concat_without_spaces,-phpdoc_short_description,-pre_increment")
   (revert-buffer t t)
 )
+
+;; phpのファイルsave前にphp-cs-fixerを実行
+;(add-to-list 'load-path (locate-user-emacs-file "el-get/php-cs-fixer"))
+;(require 'php-cs-fixer)
+
+;(add-hook 'before-save-hook 'php-cs-fixer-before-save)
