@@ -141,6 +141,13 @@
 (add-hook 'js2-jsx-mode-hook 'flycheck-mode)
 (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2)))
 
+;; typescript-mode
+(el-get-bundle ananthakumaran/typescript.el)
+
+;; ng2-mode
+(el-get-bundle AdamNiederer/ng2-mode)
+(require 'ng2-mode)
+
 ;;;
 ;;; howm 設定
 ;;;
