@@ -71,7 +71,7 @@
 ;
 
 ; auto-complete
-(el-get-bundle auto-complete)
+;(el-get-bundle auto-complete)
 
 ; color theme
 (el-get-bundle color-theme-railscasts)
@@ -98,11 +98,19 @@
 (yas-global-mode 1)
 (yas-load-directory "~/.emacs.d/snippets")
 
+; ruby-mode
+(el-get-bundle ruby-mode)
+
 ; php-mode
 (el-get-bundle php-mode)
 
+; php-cs-fixer wrapper
+(el-get-bundle OVYA/php-cs-fixer)
+
 ; web-mode
 (el-get-bundle web-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'" . web-mode))
 
 ; evil(mercurialのhgコマンドが必要)
 (el-get-bundle evil)
@@ -116,6 +124,10 @@
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 ; Rhtml-mode
 (el-get-bundle rhtml-mode)
+
+;; Rinari
+(add-to-list 'load-path "~/.emacs.d/el-get/rinari")
+(require 'rinari)
 
 ; flycheck ※el-getで入らないので、M-x pakage-install [Enter] flycheckなどで入れる
 ;(el-get-bundle melpa:flycheck)
@@ -133,11 +145,15 @@
 ; go-mode
 (el-get-bundle go-mode)
 
+; restclient
+(el-get-bundle restclient)
+
 ;; js2-mode
 (el-get-bundle mooz/js2-mode)
 ; jsxファイルに適用
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode))
 (add-to-list 'auto-mode-alist '("\\.gs\\'" . js2-mode))
+
 (add-hook 'js2-jsx-mode-hook 'flycheck-mode)
 (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2)))
 
@@ -147,6 +163,12 @@
 ;; ng2-mode
 (el-get-bundle AdamNiederer/ng2-mode)
 (require 'ng2-mode)
+
+;; rubocop                                        ;
+(el-get-bundle bbatsov/rubocop)
+(el-get-bundle bbatsov/rubocop-emacs)
+(require 'rubocop)
+(add-to-list 'load-path "~/.rbenv/shims")
 
 ;;;
 ;;; howm 設定
@@ -184,7 +206,14 @@
 ;;;
 ;;; web-mode
 ;;;
-(defun web-mode-hook ()
+(add-hook 'web-mode-hook 'flycheck-mode)
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (equal web-mode-content-type "js")
+              (flycheck-add-mode 'javascript-eslint 'web-mode)
+              (flycheck-mode))))
+
+(defun my-web-mode-hook ()
   "Hooks for Web mode."
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
@@ -193,8 +222,7 @@
         '(("php"    . "\\.ctp\\'"))
         )
   )
-(add-hook 'web-mode-hook 'web-mode-hook)
-  
+(add-hook 'web-mode-hook 'my-web-mode-hook)
 
 ;;;
 ;;; swift-mode flycheck用の設定
@@ -219,6 +247,18 @@
   )
 )
 
+;;;
+;;; rubocop setting
+;;;
+(add-hook 'ruby-mode-hook 'rubocop-mode)
+
+;;;
+;;; ruby-mode flycheck
+;;;
+(add-hook 'ruby-mode-hook
+          '(lambda ()
+             (setq flycheck-checker 'ruby-rubocop)
+             (flycheck-mode 1)))
 
 ;;;
 ;;; GNU emacs用
@@ -286,3 +326,30 @@
 ;(require 'php-cs-fixer)
 
 ;(add-hook 'before-save-hook 'php-cs-fixer-before-save)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(flycheck-disabled-checkers (quote (javascript-jshint javascript-jscs)))
+ '(package-selected-packages
+   (quote
+    (nil swift-mode magit inflections flycheck codic auto-complete))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:stipple nil :background "#272822" :foreground "#F8F8F2" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "Ricty" :height 140))))
+ '(cursor ((t (:background "#F8F8F2" :foreground "#272822"))))
+ '(font-lock-comment-face ((((class color) (min-colors 88) (background dark)) (:foreground "#75715E"))))
+ '(font-lock-function-name-face ((((class color) (min-colors 88) (background dark)) (:foreground "#A6E22E"))))
+ '(font-lock-keyword-face ((((class color) (min-colors 88) (background dark)) (:foreground "#F92672"))))
+ '(font-lock-preprocessor-face ((t (:inherit font-lock-builtin-face :foreground "#66d9ef"))))
+ '(font-lock-string-face ((((class color) (min-colors 88) (background dark)) (:foreground "#E6DB74"))))
+ '(font-lock-type-face ((((class color) (min-colors 88) (background dark)) (:foreground "#66d9ef"))))
+ '(font-lock-variable-name-face ((((class color) (min-colors 88) (background dark)) (:foreground "#FD971F"))))
+ '(region ((((class color) (min-colors 88) (background dark)) (:background "#49483E"))))
+ '(show-paren-match ((((class color) (background dark)) (:background "#3E3D32"))))
+ '(variable-pitch ((t (:family "DejaVu Sans")))))
+(put 'downcase-region 'disabled nil)
